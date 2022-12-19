@@ -80,4 +80,4 @@ Colour of the input boxes changed
 ![team](https://user-images.githubusercontent.com/101457128/208504192-dca32db3-50ba-4f7e-93cc-fbc48499b3d4.png)
 
 
-
+# PAYMENT USING PAYPAL PAGE (soon after completion will upload)
