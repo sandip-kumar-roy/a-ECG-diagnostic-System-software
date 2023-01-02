@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../node_modules/sweetalert2/dist/"></script>
+    <link rel="stylesheet" href="../node_modules/sweetalert2/dist/sweetalert2.min.css">
+<title>Message</title>
+  <style>
+    
+    .msg{
+      background: lawngreen;
+    }
+    #my-template{
+      background:blue;
+      height: max-content;
+      width: max-content;
+      box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    }
+    a:link { 
+      text-decoration: none;
+     }
+     .proceed{
+      color:white;
+      font-size: 30px;
+      
+     }
+  </style>
+    <template id="my-template">
+        <swal-title>
+          {% if messages %}
+            {% for message in messages %}
+              <div class="msg">{{message}}</div>
+            {% endfor %}
+          {% endif %}
+        </swal-title>
+        {% if user.is_authenticated %}
+          <swal-icon type="success" color="green"></swal-icon>
+        {% else %}
+          <swal-icon type="warning" color="red"></swal-icon>
+        {% endif %}
+        <swal-button type="confirm">
+          <a class="proceed" href="/">proceed</a>
+        </swal-button>
+        <swal-param name="allowEscapeKey" value="false" />
+        <swal-param
+          name="customClass"
+          value='{ "popup": "my-popup" }' />
+        <swal-function-param
+          name="didOpen"
+          value="popup => console.log(popup)" />
+      </template>
+      <script>
+        Swal.fire({
+            template: '#my-template'
+          })
+      </script>
+{% endblock content %}

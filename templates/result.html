@@ -1,0 +1,520 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<style>
+  #tips {
+    margin-top: 30px;
+  }
+  .tip {
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+      rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    color: white;
+  }
+  .modal {
+    margin-top: 40px;
+  }
+  .prev {
+    padding: 0.9rem 4rem;
+    border-radius: 3rem;
+    display: inline-block;
+    background-color: rgb(2, 242, 2);
+    font-weight: 800;
+    font-size: 17px;
+    -webkit-box-shadow: 7px 5px 7px 2px rgb(32, 255, 7);
+    box-shadow: rgb(0 0 0 / 56%) 0px 22px 70px 4px;
+    -webkit-transition: var(--transition);
+    -o-transition: var(--transition);
+    transition: var(--transition);
+  }
+  .prev:hover {
+    transform: scale(1.2);
+    color: #000;
+    background-color: greenyellow;
+    -webkit-box-shadow: var(--box-shadow);
+    box-shadow: var(--box-shadow);
+  }
+  .modal-body {
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+      rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  }
+  .modal-title {
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+      rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    background: rgb(255, 89, 114);
+    text-align: center;
+    color: white;
+    font-family: cursive;
+    font-size: 30px;
+  }
+
+  .caution {
+    background: rgb(255, 1, 1);
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+      rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  }
+
+  .caution img {
+    width: 100%;
+    border-radius: 50%;
+    height: 205;
+  }
+  .pop .h-1 {
+    margin-left: 10%;
+    width: fit-content;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+      rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    background: cyan;
+  }
+  .healthy{
+    margin-left: 10%;
+    width: fit-content;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+      rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    background: rgb(89, 252, 165);
+  }
+  .healthypara{
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+      rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    background: rgb(169, 255, 71);
+    margin-top: 10%;
+    margin-bottom: 10%;
+  }
+  .h-1 {
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+      rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    background: cyan;
+  }
+  
+  .para {
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+      rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    background: rgb(245, 123, 0);
+    margin-top: 10%;
+    margin-bottom: 10%;
+  }
+  .paratips {
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+      rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    background: rgb(101, 255, 173);
+  }
+
+  .beta .close-modal {
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+      rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    margin-left: 35%;
+  }
+  .close-modal {
+    margin-top: 20px;
+  }
+  #ex2 {
+    margin-top: 10%;
+  }
+  #sub-modal {
+    height: 600px;
+  }
+  .war {
+    padding-top: 10px;
+    background: red;
+    font-size: 18px;
+    word-spacing: 6px;
+  }
+  table,
+  th,
+  td {
+    border: 3px solid rgb(75, 102, 255);
+    font-weight: 700;
+  }
+  table td {
+    color: rgb(87, 0, 247);
+  }
+  table th {
+    color: rgb(234, 2, 14);
+    background: springgreen;
+  }
+
+  .arrow-1 {
+    width: 100px;
+    height: 50px;
+    margin-left: 300px;
+    transform: rotate(-50deg);
+    display: flex;
+   
+  }
+  .arrow-1:before {
+    content: "";
+    background: currentColor;
+    width: 15px;
+    clip-path: polygon(
+      0 10px,
+      calc(100% - 15px) 10px,
+      calc(100% - 15px) 0,
+      100% 50%,
+      calc(100% - 15px) 100%,
+      calc(100% - 15px) calc(100% - 10px),
+      0 calc(100% - 10px)
+    );
+    animation: a1 1.5s infinite linear;
+  }
+  @keyframes a1 {
+    90%,
+    100% {
+      flex-grow: 1;
+    }
+  }
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<!-- jQuery Modal -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css"
+/>
+
+<section id="package-service" class="package-service py text-center">
+  <div class="container">
+    <div class="package-service-head text-white">
+      <h2>PREDICTION RESULTS</h2>
+      <marquee>
+        <strong class="war"
+          >⚠ DO NOT REFRESH THE PAGE BEFORE PREVIEWING THE DATA</strong
+        ></marquee
+      >
+      <p class="text text-lg">
+        According to Your Details We Have Diagnosed your Heart using our
+        Prediction System
+      </p>
+      <p class="text text-lg">
+        Click on the Below in RESULT CARD to check your heart conditions
+      </p>
+      {% for message in messages %}
+      <div class="message">
+        {{ message }}
+        <a href="#" class="del-msg">&times;</a>
+      </div>
+      {% endfor %}
+      <a href="#ex1" id="toggle" rel="modal:open" class="prev btn-dark">PREVIEW YOUR ENTERED DATA</a>
+    </div>
+    <!-- POPUP FOR PREVIEW DATA -->
+    <div id="ex1" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">PREVIEW</h5>
+        </div>
+        <div class="modal-body">
+          <table style="width: 100%">
+            <tr>
+              <th>COLUMN NAME</th>
+              <th>YOUR INPUTS</th>
+            </tr>
+            <tr>
+              <td>Your AGE</td>
+              <td>{{age}}</td>
+            </tr>
+            <tr>
+              <td>CHEST PAIN TYPE</td>
+              <td>{{Chest_pain_type}}</td>
+            </tr>
+            <tr>
+              <td>RESTING BLOOD PRESSURE</td>
+              <td>{{resting_blood_pressure}}</td>
+            </tr>
+            <tr>
+              <td>SERUM CHOLESTROL</td>
+              <td>{{serum_cholestoral}}</td>
+            </tr>
+            <tr>
+              <td>FASTING BLOOD SUGAR</td>
+              <td>{{fasting_blood_sugar}}</td>
+            </tr>
+            <tr>
+              <td>RESTING ELECTRO-CARDIOGRAPHY</td>
+              <td>{{resting_electrocardiographic}}</td>
+            </tr>
+            <tr>
+              <td>MAX HEART RATE</td>
+              <td>{{max_heart_rate}}</td>
+            </tr>
+            <tr>
+              <td>EXERCISED INDUCED ANGINA</td>
+              <td>{{exercise_induced_angina}}</td>
+            </tr>
+            <tr>
+              <td>OLDPEAK</td>
+              <td>{{oldpeak}}</td>
+            </tr>
+            <tr>
+              <td>PEAK ST SEGMENT</td>
+              <td>{{peak_ST_segment_slope}}</td>
+            </tr>
+            <tr>
+              <td>MAJOR VESSELS</td>
+              <td>{{major_vessels}}</td>
+            </tr>
+            <tr>
+              <td>THAL VALUE</td>
+              <td>{{thal}}</td>
+            </tr>
+            <tr>
+              <td>GENDER</td>
+              <td>{{Gender}}</td>
+            </tr>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <a class="btn btn-primary"  href="{% url 'save_form' %}" rel="modal:close">SAVE</a>
+          <a class="btn btn-primary" href="{% url 'edit_form' %}">EDIT</a>
+        </div>
+      </div>
+    </div>
+    
+    <!--POPUP FOR danger HEART-->
+    <div id="ex2" class="modal">
+      <div class="ighealthy">
+        <img src="{% static 'images/congo.png' %}" alt="" />
+      </div>
+      <div class="healthy">
+        <h1>You Are Totally Safe {{user.get_full_name}} !!</h1>
+      </div>
+
+      <div class="healthypara">
+        <h2>
+          we have analysed your data and predicted that you are  safe so move to
+          safe section of this page to read what next to do
+        </h2>
+      </div>
+      <div class="beta">
+        <a href="#" rel="modal:close" class="close-modal">CLOSE</a>
+      </div>
+    </div>
+   
+    <!--popup OF danger HEART-->
+    <div id="ex5" class="modal">
+      <div class="caution">
+        <img src="{% static 'images/danger.png' %}" alt="" />
+      </div>
+      <div class="h-1">
+        <h1>You Are Not Safe {{user.get_full_name}} !!</h1>
+      </div>
+
+      <div class="para">
+        <h2>
+          we have analysed your data and predicted that you are Not safe. So you
+          must consult to a neareset doctor immediately
+        </h2>
+      </div>
+      <div class="beta">
+        <a class="btn btn-primary" href="#" rel="modal:close">CLOSE</a>
+      </div>
+    </div>
+   
+    <!--POPUP FOR DANGER HEART-->
+    <style>
+      .modal {
+        max-width: 100vh;
+      }
+    </style>
+    
+    <!--END OF RESULTS-->
+    <!--healthy safety yips-->
+    <style>
+      #ex4 {
+        width: 3000px;
+      }
+    </style>
+    <div id="ex4" class="modal">
+      <div class="ig" id="tips">
+        <marquee class="tip">
+          <strong class="war"
+            >ⓘ PREVENTION IS BETTER THAN CURE ⓘ</strong
+          ></marquee
+        >
+      </div>
+      <style>
+        .h-1{
+          margin-top: 20px;
+          background:rgb(52, 52, 251);
+          box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,rgba(0, 0, 0, 0.22) 0px 15px 12px;
+        }
+      </style>
+      <div class="h-1">
+        <h1>{{user.get_full_name}} HERE ARE SOME HEALTHY TIPS !!</h1>
+      </div>
+      <style>
+        .paratips {
+          margin-top: 20px;
+        }
+        .paratips img{
+          margin-left: 25%;
+          width: fit-content;
+          box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,rgba(0, 0, 0, 0.22) 0px 15px 12px;
+        }
+        .paratips h2{
+          background-color: salmon;
+          color: azure;
+          width: max-content;
+          height: max-content;
+          box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,rgba(0, 0, 0, 0.22) 0px 15px 12px;
+        }
+        .prec{
+          font-size: 18px;
+          font-weight: bold;
+        }
+      </style>
+
+      <div class="paratips">
+        <h3>
+          If you are concerned about your heart health, there are dozens of ways
+          you can change your lifestyle to prevent heart disease. Below are 10
+          tips to prevent heart disease and keep your heart happy.
+        </h3>
+        <h2>⓵ - EXERCISE REGULARLY</h2>
+        <style>
+          
+        </style>
+        <img src="{% static 'images/exercise.png' %}" alt="" />
+        <p class="prec">
+          Getting regular exercise is good for you for many reasons, but one of
+          the best is that it keeps your heart in good shape. It lowers
+          cholesterol, improves circulation, can help reduce your weight and
+          blood pressure. As an added bonus, exercise releases endorphins into
+          your bloodstream that relax and calm you down and also relieves pain.
+        </p>
+        <h2>⓶ - REDUCE YOUR CHOLESTEROL</h2>
+        <img src="{% static 'images/cholestrol.png' %}" alt="" />
+        <p class="prec">
+          High cholesterol can cause many problems in the body— one of the worst
+          of which is heart disease. You can reduce your cholesterol levels by
+          eating a healthier diet. Some foods that lower your cholesterol are:
+          Oatmeal Beans/legumes Nuts (almonds, walnuts, and pistachios are
+          excellent) Fruit like apples, grapes, strawberries, and other citrus
+          fruits Vegetable oils Soy Fatty fish like salmon Other ways to lower
+          your cholesterol include getting plenty of exercise, quit smoking,
+          lose weight, and limit your alcohol consumption.
+        </p>
+        <h2>⓷ - CHANGE YOUR DIET</h2>
+        <img src="{% static 'images/diet.png' %}" alt="" />
+        <p class="prec">
+          Changing your diet to include more heart-friendly foods is another
+          great way to keep your heart in good condition for years to come. Try
+          to reduce your saturated and trans-fat foods like french fries,
+          cookies, cake, fatty meats, and junk food. You also probably want to
+          eat more fiber (found in fruits, vegetables, nuts, and whole grains),
+          as well as more omega-3 fatty fish like salmon.
+        </p>
+        <h2>⓸ - QUIT SMOKING</h2>
+        <img src="{% static 'images/smoke.png' %}" alt="" />
+        <p class="prec">
+          Most people think of lung cancer as the main ailment they’re trying to
+          avoid when they quit smoking, but kicking this dirty habit can be
+          beneficial to many other areas of your body as well— including your
+          heart! Smoking not only damages your lungs, but also can put immense
+          stress on your heart. Quit smoking to bring good health to your heart
+          and lungs..
+        </p>
+        <h2>⓹ - GIVE UP ALCOHOL</h2>
+        <img src="{% static 'images/alcohol.png' %}" alt="" />
+        <p class="prec">
+          Although small amounts of alcohol can be beneficial, less is more.
+          Whether you work to limit yourself to small amounts of alcohol or give
+          it up altogether, this is an important step to take in caring for your
+          heart.
+        </p>
+        <h2>⓺ - WATCH YOUR WEIGHT</h2>
+        <img src="{% static 'images/weight.png' %}" alt="" />
+        <p class="prec">
+          Being even a little overweight can lead to high cholesterol and high
+          blood pressure, putting more stress on your heart. Try swapping those
+          unhealthy snacks for healthier ones. Take more walks or join a yoga
+          class to start small, but every little bit helps. The more you lose
+          weight, the more you will be encouraged to continue on your healthier
+          lifestyle path. .
+        </p>
+        <h2>⓻ - TAKE YOUR BP MEDICATION</h2>
+        <img src="{% static 'images/bp.png' %}" alt="" />
+        <p class="prec">
+          This one is fairly straightforward: if your blood pressure is high,
+          take your medication as directed. High blood pressure is a severe
+          condition that can damage the heart if left untreated. .
+        </p>
+        <h2>⓼ -EDUCATE YOURSELF ON HEART HEALTH</h2>
+        <img src="{% static 'images/eductae.png' %}" alt="" />
+        <p class="prec">
+          The more you know about a healthy lifestyle, your risk factors, and
+          how to improve your heart health, the better off you will be. Consult
+          some trusted medical sources online or talk to your heart health
+          doctor for more information.
+        </p>
+        <h2>⓽ - RELAX MORE TO CONTROL YOUR BLOOD PRESSURE</h2>
+        <img src="{% static 'images/control.png' %}" alt="" />
+        <p class="prec">
+          Start meditating or take up yoga to help relax your body more often
+          and reduce your blood pressure. Exercise is also beneficial, but
+          regular meditation and quiet breaks have been shown to work wonders
+          with controlling anxiety, stress, and blood pressure. Find ways to
+          relax more by taking up a hobby, take a long bath, reducing your
+          stress at work, take reading breaks, get out in nature, or anything
+          that relaxes you.
+        </p>
+      </div>
+      <div class="beta">
+        <a href="#" rel="modal:close" class="close-modal">CLOSE</a>
+      </div>
+    </div>
+    <div id="arow" class="arrow-1"></div>
+    <div class="package-service-inner grid">
+      <div class="package-service-item bg-white">
+        <div class="icon flex">
+          <img src="{% static 'images/result.png' %}" alt="" />
+        </div>
+        <h3>CHECK YOUR RESULTS</h3>
+        <p class="text text-sm">
+          We have analysed your input data using our machine learning model
+          trained and we have saved your reults here.
+        </p>
+        {% if prediction == 0 %}
+        <a  href="#ex2" rel="modal:open" class="btn btn-blue">CHECK</a>
+        {% else %}
+        <a  href="#ex5" rel="modal:open" class="btn btn-blue">CHECK</a>
+        {% endif %}
+      </div>
+
+      <div class="package-service-item bg-white">
+        <div class="icon flex">
+          <img src="{% static 'images/safe.png' %}" alt="" />
+        </div>
+        <h3>IF YOU ARE SAFE</h3>
+        <p class="text text-sm">
+          Healthy measures we need to take for prevention of heart disease
+          because prevention is better than cure so use this tips
+        </p>
+        <a href="#ex4" rel="modal:open" class="btn btn-blue">HEALTHY TIPS</a>
+      </div>
+
+      <div class="package-service-item bg-white">
+        <div class="icon flex">
+          <img src="{% static 'images/unsafe.png' %}" alt="" />
+        </div>
+        <h3>IF YOU ARE UNSAFE</h3>
+        <p class="text text-sm">
+          Please click on the below buttons to take the precautions and you can
+          search nearest heart/cardio doctor
+        </p>
+        <a href="{% url 'locate' %}" class="btn btn-blue">LOCATE</a>
+      </div>
+    </div>
+  </div>
+  <!--if you are safe modal-->
+  <script>
+    const targetDiv = document.getElementById("arow");
+    const btn = document.getElementById("toggle");
+    btn.onclick = function () {
+      if (targetDiv.style.display !== "none") {
+        targetDiv.style.display = "none";
+      } else {
+        targetDiv.style.display = "block";
+      }
+    };
+    </script>
+</section>
+
+{% endblock content %}

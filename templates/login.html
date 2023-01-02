@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .eror{
+      background: rgb(250, 161, 161);
+      font-size: 30px;
+      font-weight: bold;
+      color: white;
+      width: 100%;
+    }
+    #wrapper{
+        display:inline-block;
+        
+    }
+    
+    </style>
+    
+    <section id = "banner-2" class = "banner-2 text-center">
+      {% if warn %}
+        <div class="eror">{{warn}}</div>
+      {% endif %}
+        <div id="wrapper">
+            <div class="logintitle">
+                LOGIN FORM
+            </div>
+            <form action="{% url 'user_login' %}" method="POST">
+                {% csrf_token %}
+                <div class="field">
+                    <input type="text" name="uname" id="" required>
+                    <label>user name</label>
+                </div>
+                <div class="field">
+                    <input type="password" name="password" id="" required>
+                    <label>Password</label>
+                </div>
+                <div class="pass-link"><a href="{% url 'reset' %}">Forgot Password</a></div>
+                <div class="field">
+                    <input type="submit" value="Login">
+                </div>
+                <div class="signup-link">Not A Member ? <a href="{% url 'register' %}">Register</a>  here</div>
+            </form>
+        </div>
+  </section>
+  {% if status %}
+        <script>
+            alert("{{status}}");
+            windows.location="/"
+        </script>
+    {% endif %}
+  {% endblock content %}
