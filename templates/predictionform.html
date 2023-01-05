@@ -1,0 +1,224 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+  ol li{
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+
+    list-style-type: lower-alpha;
+  }
+  .req{
+    color: red;
+    font-size: 22px;
+  }
+  .tooltip {
+    position: relative;
+    width: max-content;
+    font-size: 19px;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+  }
+  
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: max-content;
+    background-color: black;
+    color: #fff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 50%;
+    margin-left: -60px;
+  }
+  
+  .tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+  }
+  
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
+</style>
+<section id = "prediction-form" class = "prediction-form py">
+    <h2 class="inst">enter the details as per the instructions and fill all the neccessary details <a class="side-inst" href="http://">HELP<img class="in" src="{% static 'images/instructions.png' %}" alt=""></a> </h2>
+    <div class="predict-container">
+        <div class="predict-title">PREDICTION FORM</div>
+        <div class="content">
+          <form action="{% url 'result_page' %}" method="post">
+            {% csrf_token %}
+            <div class="user-details">
+              {{datas.age}}
+              <div class="input-box">
+                
+                <span class="span-details" >Age <strong class="req">*</strong></span>
+                <div class="tooltip"> 🛈
+                  <span class="tooltiptext">Enter Your Age</span>
+                </div>
+                <input type="text" name="age" placeholder="Enter your age" required>
+              </div>
+              <div class="input-box">
+                <span class="span-details">Chest pain type <strong class="req">*</strong> </span>
+                <div class="tooltip"> 🛈
+                  <span class="tooltiptext">
+                    <ol>
+                      <li>Typical symptoms usually include chest, arm, or jaw pain</li>
+                      <li>aTypical Angina - Atypical pain is back pain or indigestion.</li>
+                      <li>Non Anginal -   A  nonanginal if its duration is over 30 minutes or less than 5 seconds</li>
+                      <li>Asymptomatic -shortness of breath or heavy breathing without exertion</li>
+                    </ol>
+                  </span>
+                </div>
+                    <select id="value" name="cpt" required>
+                        <option value="">select a value</option>
+                        <option value="typical angina">typical angina</option>
+                        <option value="atypical angina"> atypical angina</option>
+                        <option value="non-anginal pain"> non-anginal pain</option>
+                        <option value="asymptomatic">asymptomatic</option>
+                    </select>
+              </div>
+              <div class="input-box">
+                <span class="span-details">resting blood pressure <strong class="req">*</strong></span>
+                <div class="tooltip"> 🛈
+                  <span class="tooltiptext">A normal blood pressure level is less than 120/80 mmHg.</span>
+                </div>
+                <input type="text" name="rbp" placeholder="in mm Hg " required>
+              </div>
+              <div class="input-box">
+                <span class="span-details">serum cholestoral <strong class="req">*</strong></span>
+                <div class="tooltip"> 🛈
+                  <span class="tooltiptext">A person's serum cholesterol level represents the amount<br> of total cholesterol in their blood.</span>
+                </div>
+                <input type="text" name="sc" placeholder="mg/dl" required>
+              </div>
+              <div class="input-box">
+                <span class="span-details">fasting blood sugar(fbs) <strong class="req">*</strong></span>
+                <div class="tooltip"> 🛈
+                  <span class="tooltiptext"> fasting blood sugar level of 99 mg/dL or lower is normal, <br>
+                    100 to 125 mg/dL indicates you have prediabetes,<br>
+                     and 126 mg/dL or higher indicates you have diabetes.</span>
+                </div>
+                    <select id="val" name="fbs" required>
+                        <option value="">select a value</option>
+                        <option value="fbs < 120 mg/dl">fbs < 120 mg/dl</option>
+                        <option value="fbs > 120 mg/dl">fbs > 120 mg/dl</option>
+                    </select>
+              </div>
+              <div class="input-box">
+                <span class="span-details">resting electrocardiographic <strong class="req">*</strong></span>
+                <div class="tooltip"> 🛈
+                  <span class="tooltiptext">
+                    <ol>
+                      <li>Normal =>A normal resting heart rate is 60 to 100 beats per minute.</li>
+                      <li>having ST-T => ST-segment elevation usually indicates a total blockage of the <br>involved coronary artery and that the heart muscle is currently dying.</li>
+                      <li>hypertrophy => Hypertrophic cardiomyopathy (HCM) is a disease in which the heart muscle becomes thickened (hypertrophied).</li>
+                    
+                    </ol>
+                  </span>
+                </div>
+                    <select id="value" name="re" required>
+                        <option value="">select a value</option>
+                        <option value="Normal">Normal</option>
+                        <option value="having ST-T">having ST-T</option>
+                        <option value="hypertrophy">hypertrophy</option>
+                    </select>
+              </div>
+              <div class="input-box">
+                <span class="span-details">max heart rate <strong class="req">*</strong></span>
+                <div class="tooltip"> 🛈
+                  <span class="tooltiptext">For example, for a 50-year-old person, the estimated maximum age-related<br> heart rate would be calculated as 220 – 50 years = 170 beats per minute (bpm).</span>
+                </div>
+                <input type="text" name="mhr" placeholder="HR-max" required>
+              </div>
+              <div class="input-box">
+                <span class="span-details">exercise induced angina <strong class="req">*</strong></span>
+                <div class="tooltip"> 🛈
+                  <span class="tooltiptext">angina induced by initial exercise is attenuated or even disappears<br> if they briefly slacken or interrupt their exertion before <br>resuming it at the same or even greater level of intensity</span>
+                </div>
+                    <select name="eia" id="value" required>
+                        <option value="">select yes/no</option>
+                        <option value="No">No</option>
+                        <option value="Yes">Yes</option>
+                    </select>
+              </div>
+              <div class="input-box">
+                <span class="span-details">oldpeak <strong class="req">*</strong></span>
+                <div class="tooltip"> 🛈
+                  <span class="tooltiptext">Old peak = ST depression induced by exercise relative to rest( 0 to 6.2)</span>
+                </div>
+                <input type="text" name="op" placeholder="ST-depressn induced by exercise" required>
+              </div>
+              <div class="input-box">
+                <span class="span-details">peak ST segment slope <strong class="req"><strong class="req">*</strong></strong></span>
+                <div class="tooltip"> 🛈
+                  <span class="tooltiptext">The ST segment shift relative to exercise-induced increments in heart rate,<br> the ST/heart rate slope (ST/HR slope), has been proposed as a more accurate <br>ECG criterion for diagnosing significant coronary artery disease (CAD).</span>
+                </div>
+                <select name="peakst" id="value" required>
+                    <option value="">select</option>
+                    <option value="upsloping">upsloping</option>
+                    <option value="flat">flat</option>
+                    <option value="downsloping"> downsloping</option>
+                </select>
+              </div>
+              <div class="input-box">
+                <span class="span-details">major vessels (0-3) <strong class="req">*</strong></span>
+                <div class="tooltip"> 🛈
+                  <span class="tooltiptext">The major blood vessels that supply the heart (coronary arteries) struggle<br> to send enough blood, oxygen and nutrients to the heart muscle.</span>
+                </div>
+                    <select name="mv" id="value" required>
+                        <option value="">select a val</option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+              </div>
+              <div class="input-box">
+                <span class="span-details">thal <strong class="req">*</strong></span>
+                <div class="tooltip"> 🛈
+                  <span class="tooltiptext">A blood disorder called thalassemia (3 = normal; 6 = fixed defect; 7 = reversable defect)<br> target: Heart disease (0 = no, 1 = yes)</span>
+                </div>
+                    <select name="thal" id="value" required>
+                        <option value="">select a val</option>
+                        <option value="normal">normal</option>
+                        <option value="fixed defect">fixed defect</option>
+                        <option value="reversable defect">reversable defect</option>
+                    </select>
+              </div>
+              <div class="input-box">
+                <span class="span-details">Gender <strong class="req">*</strong></span>
+                <div class="tooltip"> 🛈
+                  <span class="tooltiptext">Enter Your gender</span>
+                </div>
+                    <select name="gender" id="gender" required>
+                        <option value="">select a val</option>
+                        <option value="male">male</option>
+                        <option value="female">female</option>
+                    </select>
+              </div>
+            </div>
+            
+            <div class="pred-button">
+              <input type="submit" id="submitbtn" value="PREDICT">
+            </div>
+          </form>
+          
+        </div>
+      </div>
+      
+
+    </script>
+    
+</section>
+    </header>
+    
+{% endblock content %}

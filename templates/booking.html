@@ -1,0 +1,62 @@
+<style>
+    table, th, td {
+      border:1px solid rgb(0, 0, 0);
+      
+    }
+    table th{
+        width:80%;
+        background: rgb(247, 162, 88);
+      }
+      table td{
+        background: rgb(248, 246, 241);
+      }
+    </style>
+    <div>
+    
+    
+    
+    <table style="width:80%">
+      <tr class="trow" style="background:cornsilk">
+        
+        <th>USER NAME</th>
+        <th>AGE</th>
+        <th>CHEST PAIN TYPE</th>
+        <th>RESTING BLOOD PRESSURE</th>
+        <th> SERUM CHOLESTORAL</th>
+        <th>FASTING BLOOD SUGAR</th>
+        <th>RESTING ELECTROCARDIOGRAPHIC</th>
+        <th>MAX HEART RATE</th>
+        <th>EXERCISE INDUCED ANGINA</th>
+        <th>OLDPEAK</th>
+        <th> PEAK ST SEGMENT SLOPE</th>
+        <th>MAJOR VESSELS</th>
+        <th>THAL</th>
+        <th>RESULT</th>
+       
+                
+      </tr>
+      {% for data in context %}
+      
+      <tr>
+        <td>{{data.user_name}}</td>
+        <td>{{data.age}}</td>
+        <td>{{data.Chest_pain_type}}</td>
+        <td>{{data.resting_blood_pressure}}</td>
+        <td> {{data.serum_cholestoral}}</td>
+        <td>{{data.fasting_blood_sugar}}</td>
+        <td>{{data.resting_electrocardiographic}}</td>
+        <td>{{data.max_heart_rate}}</td>
+        <td>{{data.exercise_induced_angina}}</td>
+        <td>{{data.oldpeak}}</td>
+        <td> {{data.peak_ST_segment_slope}}</td>
+        <td>{{data.major_vessels}}</td>
+        <td>{{data.thal}}</td>
+        {% if data.result == "Healthy heart" %}
+        <td style="color:rgb(92, 182, 1)">{{data.result}}</td>
+        {% else %}
+        <td style="color:red">{{data.result}}</td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+    </table>
+</div>

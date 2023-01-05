@@ -1,0 +1,183 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .main-profile-1{
+        width:fit-content;
+        position: relative;
+        box-shadow: rgba(0, 0, 0, 0.95) 0px 84px 108px, rgba(0, 0, 0, 0.82) 0px 100px 110px;
+        margin-top: 7%;
+        /* margin-left: 14%; */
+        font-size: 28px;
+        padding: 0 10px;
+        background: blue;
+        max-width: max-content;
+        min-width: fit-content;
+      
+    }  
+    .header-inner{
+        float: left;
+    } 
+    .two{
+        box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+        width: fit-content;
+        background: rgb(133, 145, 247);
+    }
+    .heroku td{
+        text-align: left;
+        max-width: min-content;
+        
+    }
+    table td{
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+        border: none;
+        
+    }
+    .nam{
+        background: rgb(157, 216, 255);
+    }
+    .do{
+        width: 200px;
+        height: 200px;
+    }
+    .btn{
+        justify-content: center;
+        margin-left: 30px;
+        background: red;
+        color: aliceblue;
+    }
+    .btn:hover{
+        background: rgb(255, 179, 195);
+        color: rgb(20, 19, 19);
+    }
+    .AMT{
+        background: crimson;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+        color: rgb(255, 253, 254);
+    }
+    .frm{
+        width: fit-content;
+        height: 120px;
+        margin-left: 10%;
+        background: rgb(236, 30, 68);
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+        display: inline-grid ;
+        justify-content: center;
+        margin-top: 15px;
+    }
+    .pay{
+        width: 300px;
+        height: max-content;
+    }
+    #date2,#date1{
+        height: 20px;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+        width: 20px;
+    }
+    .date{
+        font-family: cursive;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+        background-color: rgb(121, 245, 38);
+        margin-left: 60px;
+        margin-bottom: 20px;
+    }
+    .war{
+        background-color: red;
+    }
+</style>
+<section id = "banner-2" class = "banner-2 text-center">
+    <div class="package-service-head text-white">
+        <h2>CHOOSE A SLOT</h2>
+        <marquee>
+            <strong class="war"
+              >⚠ DO NOT REFRESH THE PAGE BEFORE PREVIEWING THE DATA</strong
+            ></marquee
+          >
+        </div>
+<div class="main-profile-1">
+<h2 >IDENTITY</h2>
+        <div class="cards">
+            <div class="card-body">
+                <table class="heroku">
+                    <tbody>
+                        <tr>
+                            
+                            <td><img class="do" src="/media/{{doc.img}}" alt="" width="150" height="230"></td>
+                            <td >
+                                <label class="date" for="">{{doc.date1}}</label>
+                                <input type="checkbox" name="" id="date1" value="date1">
+                                <label class="date" for="">{{doc.date2}}</label>
+                                <input  type="checkbox" name="" id="date2" value="date2">
+                            <div class="frm">
+                                <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+                                    <input class="pay" type="hidden" name="cmd" value="_xclick" id="id_cmd">
+                                    <input class="pay" type="hidden" name="charset" value="utf-8" id="id_charset">
+                                    <input class="pay" type="hidden" name="currency_code" value="USD" id="id_currency_code">
+                                    <input class="pay" type="hidden" name="no_shipping" value="1" id="id_no_shipping">
+                                    <input class="pay" type="hidden" name="business" value="{{form.business}}" id="id_business">
+                                    <input class="pay" type="hidden" name="amount" value="{{form.amount}}" id="id_amount">
+                                    <input class="pay" type="hidden" name="item_name" value="Order {{form.item_name}}" id="id_item_name">
+                                    <input class="pay" type="hidden" name="invoice" value="{{form.invoice}}" id="id_invoice">
+                                    <input class="pay" type="hidden" name="notify_url" value="http://127.0.0.1:8000/paypal/" id="id_notify_url">
+                                    <input type="hidden" name="cancel_return" value="http://127.0.0.1:8000/search/payment-cancelled" id="id_cancel_return">
+                                    <input type="hidden" name="return" value="http://127.0.0.1:8000/search/payment-done" id="id_return">
+                                    <input class="pay" type="image" src="https://www.paypal.com/en_US/i/btn/btn_buynowCC_LG.gif" name="submit" alt="Buy it Now">
+                                </form>
+                            </div>
+                            </td>
+                                <h2 class="AMT">Amount = {{doc.cost}}</h2>
+                                
+                        </tr>   
+                        <tr>
+                            <td class="nam"> Doctor ID</td>
+                            
+                            <td class="two">{{doc.id}}</td>
+                        </tr>
+                        <tr>
+                            <td class="nam"> FULL NAME</td>
+                            
+                            <td class="two">{{doc.name}}</td>
+                        </tr>
+                        <tr>
+                            <td class="nam"> CITY</td>
+                            
+                            <td class="two">{{doc.city}}</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="nam">STATE</td>
+                            
+                            <td class="two">{{doc.state}}</td>
+                        </tr>
+                        <tr>
+                            <td class="nam">EMAIL</td>
+                            
+                            <td class="two">{{doc.email}}</td>
+                        </tr>
+                        <tr>
+                            <td class="nam">PHONE</td>
+                            
+                            <td class="two">{{doc.phone}}</td>
+                        </tr>
+                        <tr>
+                            <td class="nam" >ADDRESS</td>
+                            
+                            <td class="two">{{doc.address}}</td>
+                        </tr>
+                          
+                        
+                        <tr>
+                            <td class="nam">OCCUPATION</td>
+                            
+                            <td class="two">{{doc.occupation}}</td>
+                        </tr>  
+                           
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        
+      </div>  
+</section>
+{% endblock content %}

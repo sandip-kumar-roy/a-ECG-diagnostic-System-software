@@ -1,0 +1,111 @@
+{% extends 'profilebase.html' %}
+{% block dashboard %}
+<style>
+    .nam{
+        background: rgb(240, 240, 255);
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+        color: rgb(26, 24, 24);
+    }
+    .nam{
+        background: rgb(204, 228, 249);
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+        color: rgb(26, 24, 24);
+    }
+    .nam-{
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+        background: #ffffff ;
+    }
+    .nam-1{
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+        background: #e4faf0 ;
+    }
+    .nam-2{
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+        background: #f3dde1 ;
+    }
+    .move{
+        margin-left: 20px;
+    }
+</style>
+
+        <div class="cards">
+            <div class="card-body">
+                <table class="move">
+                    <tbody>
+                        <tr>
+                            <td class="nam"> USER ID</td>
+                            
+                            <td class="nam-">{{user.id}}</td>
+                        </tr>
+                        <tr>
+                            <td class="nam1"> FIRST NAME</td>
+                            
+                            <td class="nam-1">{{user.first_name}}</td>
+                        </tr>
+                        <tr>
+                            <td class="nam"> LAST NAME</td>
+                            
+                            <td class="nam-">{{user.last_name}}</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="nam1">USER NAME</td>
+                            
+                            <td class="nam-1">{{user.username}}</td>
+                        </tr>
+                        <tr>
+                            <td class="nam">EMAIL</td>
+                            
+                            <td class="nam-">{{user.email}}</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="nam1">GENDER</td>
+                            
+                            <td class="nam-1">{{data.gender}}</td>
+                        </tr>
+                        <tr>
+                            <td class="nam">PHONE</td>
+                            
+                            <td class="nam-">{{data.phone}}</td>
+                        </tr>   
+                        <tr>
+                            <td class="nam1">CITY</td>
+                            
+                            <td class="nam-1">{{data.city}}</td>
+                        </tr>  
+                        <tr>
+                            <td class="nam">AGE</td>
+                            
+                            <td class="nam-">{{data.age}}</td>
+                        </tr>  
+                        <tr>
+                            <td class="nam1">OCCUPATION</td>
+                            
+                            <td class="nam-1">{{data.occupation}}</td>
+                        </tr>      
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <h2>EXTRA DETAILS</h2>
+        <div class="cards">
+            <div class="card-body">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td class="nam">DATE JOINED</td>
+                                
+                                <td class="nam-">{{user.date_joined}}</td>
+                            </tr>
+                            <tr>
+                                <td class="nam1">LAST LOGIN</td>
+                                
+                                <td class="nam-1">{{user.last_login}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </div>
+        </div>
+{% endblock dashboard %}

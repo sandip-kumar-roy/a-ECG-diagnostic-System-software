@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<main>
+    <!-- about section -->
+    <section id = "about" class = "about py">
+        <div class = "about-inner">
+            <div class = "container grid">
+                <div class = "about-left text-center">
+                    <div class = "section-head">
+                        <h2>About Us</h2>
+                        <div class = "border-line"></div>
+                    </div>
+                    <div class="bg2">
+                        <p class = "text text-lg"><h2>A ECG diagnostic system for the detection of heart related diseases</h2>
+                            <h3>Description</h3>
+                            <h4>Manual analysis of ECG signals is laborious and prone-to-error task, 
+                                even for specialist with many hours of experience. There are lots of chances when Diagnostic errors of pseudo-arrhythmias
+                                 appear to be increasing in frequency
+                                For this reason we developed this web app which is fully functional as an expert system 
+                                for automatic diagnosis of Heart Realted diseases i.e system a useful support tool for heart diagnosis
+                                The term “heart disease” is often used interchangeably with the term “cardiovascular disease”. Cardiovascular disease generally refers to conditions that involve narrowed or blocked blood vessels that can lead to a heart attack, chest pain (angina) or stroke. Other heart conditions, such as those that affect your heart’s muscle, valves or rhythm, also are considered forms of heart disease.</h4>
+                            </p>
+                                <a href = "#" id="learn" class = "btn btn-white">Learn More</a>
+                    </div>
+                    
+                    
+                </div>
+                <div class = "about-right flex">  
+                    <figure class="gallery__item gallery__item--1">
+                        <img src = "{% static 'images/about-1.png' %}" class="gallery__img" alt="Image 1"> 
+
+                        <figcaption>ECG HEART RATES </figcaption>
+                      </figure>
+                      <figure class="gallery__item gallery__item--2">
+                        <img src = "{% static 'images/about-3.png' %}" class="gallery__img" alt="Image 2">    
+                            
+                        <figcaption>CHECK USING ECG </figcaption>
+                      </figure>
+                      <figure class="gallery__item gallery__item--3">
+                        <img src = "{% static 'images/website_300x300.png' %}" class="gallery__img" alt="Image 3 ">   
+                        <figcaption>CHECKING USING OUR WEBSITE</figcaption>
+                      </figure>
+                      <figure class="gallery__item gallery__item--4">
+                        <img id="4" src = "{% static 'images/about-2.png' %}" class="gallery__img" alt="Image 4" >   
+                        <figcaption>PREDICT USING OUR TOOL</figcaption>
+                      </figure> 
+                        
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end of about section -->
+</main>
+
+{% endblock content %}

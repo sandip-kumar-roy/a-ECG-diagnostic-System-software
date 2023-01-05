@@ -1,0 +1,178 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+  .reg-container{
+    width:600px;
+    display: inline-block;
+    
+  }
+  form .reguser-details .reginput-box {
+    margin-bottom: 15px;
+    box-shadow: rgb(15 15 15 / 68%) 0px 3px 6px, rgb(0 0 0 / 59%) 0px 3px 6px;
+    width: calc(100%);
+  }
+  .regcontent form .reguser-details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 50px 0 12px 0;
+    flex-direction: column;
+  }
+ 
+  .reguser-details .reginput-box input{
+    width: 100%;
+    
+  }
+  .reguser-details .reginput-box span{
+    width: max-content;
+  }
+  .package-service-head{
+    width: 100%;
+    display: contents;
+    
+  }
+  #continue{
+    width: 70%;
+    height: 60px;
+    margin: 0px 12px;
+    border-radius: 30px;
+    font-size: 20px;;
+    font-weight: 700;
+    outline: none;
+    border:none;
+    cursor: pointer;
+    color:#fff;
+    text-align: center;
+    background: #F44770;
+    box-shadow: 3px 3px 8px #b1b1b1, -3px -3px 8px #ffffff;
+    transition: .5s;
+  }
+  .cont{
+    width: 70%;
+    height: 60px;
+    margin: 0px 12px;
+    border-radius: 30px;
+    font-size: 20px;;
+    font-weight: 700;
+    outline: none;
+    border:none;
+    cursor: pointer;
+    color:#fff;
+    text-align: center;
+    background: #F44770;
+    box-shadow: 3px 3px 8px #b1b1b1, -3px -3px 8px #ffffff;
+    transition: .5s;
+  }
+  .verified{
+    background: rgb(117, 165, 44);
+  }
+  .notverify{
+    background: red;
+
+  }
+  .eror{
+    background: rgb(94, 128, 41);
+  }
+  #result{
+    margin-top: 25px;
+    height: 25px;
+  }
+</style>
+<section id = "banner-2" class = "banner-2 text-center">
+ 
+  
+    
+    <div class="reg-container">
+        <div class="reg-title">RESET PASSWORD</div>
+        <div class="regcontent">
+          <div class="text text-danger" >
+            <strong id="result"></strong>
+          </div>
+          <form action="{% url 'newpwd' %}" method="post">
+            {% csrf_token %}
+            <div class="reguser-details">
+              <div class="reginput-box">
+                <span class="details">User Name</span>
+                <input id="un" type="text" name="uname" placeholder="your user name name" >
+              </div>
+              <div class="regbutton">
+                <button type="button" id="continue" onclick="getpass()">SEND OTP</button>
+              </div>
+            </div>
+              <div class="reguser-details" id="afterotp" style="display: none">
+              <div class="reginput-box"  >
+                <span class="details">Enter OTP</span>
+                <input id="uotp" type="number"  placeholder="enter your OTP" >
+              </div>
+              <div class="regbutton">
+                <button type="button" class="cont" onclick="matchotp()">VERIFY OTP</button>
+              </div>
+            </div>
+            <div class="reguser-details" id="changepass" style="display: none">
+              <div class="reginput-box">
+                <span class="details">Enter New Password</span>
+                <input type="password" name="npass" placeholder="Enter New Password" >
+              </div>
+              <div class="regbutton">
+                <input type="submit" value="CHANGE PASSWORD" id="continue" onclick="getpass()">
+              </div>
+            </div>
+            <input type="hidden" id="realotp">
+          </form>
+    
+        </div>
+      </div>
+      
+      
+</section>
+<script>
+  function getpass(){
+    let user_name=$('#un').val()
+    $('#result').html("<p class='verified'>OTP send successfully to your registered mail id</p>");
+    $ .ajax({
+      url:"{% url 'reset_pwd_page' %}",
+      type:"get",
+      data:{
+        username:user_name
+      },
+      success:function(data){
+        if (data.status=="failed"){
+          $('#result').html("<p>No user registered with this username</p>");
+        }
+        else if(data.status=="error"){
+          $('#result').html("<p>could not sent email !! please re enter registered mail id</p>");
+        }
+        else if(data.status=="sent"){
+          $('#result').html("<p class='verified'>Enter The OTP you recieved in your mail id</p>");
+        
+          $('#continue').hide();
+          $("#afterotp").slideDown(300);
+          $("#realotp").val(data.rotp);
+        }
+      }
+    })
+  }
+  function matchotp(){
+    uotp=$('#uotp').val();
+    rotp=$('#realotp').val();
+
+    if(uotp==rotp){
+     $('#afterotp').hide();
+     $('#changepass').fadeIn(1000);
+     $('#result').html("<p class='verified'>OTP VERIFIED SUCCESSFULLY </p>").css("background-color", "green");
+    }
+    else{
+      $('#result').html("<p class='notverify'>INCOREECT OTP !!! </p>").css("background-color", "green");
+    }
+  }
+
+</script>
+{% if status %}
+<script>
+  alert("{{status}}");
+  windows.location='/'
+</script>
+  
+{% endif %}
+{% endblock content %}

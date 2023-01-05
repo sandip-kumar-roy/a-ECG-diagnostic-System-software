@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .services-1{
+    display: flex;
+    background: -webkit-gradient( linear, left top, left bottom, from(rgba(0, 80, 213, 0.85)), to(rgba(0, 80, 213, 0.95)) ), url(../images/package-service-img.jpg) center/cover no-repeat;
+    background: -o-linear-gradient(rgba(0, 80, 213, 0.85), rgba(0, 80, 213, 0.95)), url(../images/package-service-img.jpg) center/cover no-repeat;
+    background: linear-gradient(rgba(0, 80, 213, 0.85), rgba(0, 80, 213, 0.95)), url(../images/package-service-img.jpg) center/cover no-repeat;
+    font-family: Arial;
+    overflow: hidden;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: stretch;
+    flex-wrap: wrap;
+}
+</style>
+<main>
+    <section id = "services" class = "services-1">
+                
+        <!-- End -->
+    <style>
+        .profile {
+            margin:20px;
+            text-align: center;
+            justify-content: center;
+          }
+          .main-profile {
+            box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+            margin-top: 7%;
+          }
+          .main-profile h2{
+            text-align:center;
+            box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+            width:fit-content;
+            height:40px;
+            color:white;
+            font-family:cursive;    
+          }
+          .main-profile .cards table {
+            border: none;
+            font-size: 20px;
+            font-weight: bolder;
+            height:fit-content;
+            width: 80%;
+          }
+          .sidenav{
+            top:90px;
+          }
+    </style>
+        <!-- Sidenav -->
+        <div class="sidenav">
+            <div class="profile" >
+                {% if data.img %}
+                <img src="/media/{{data.img}}" alt="" width="250" height="230">
+                {% else %}
+                <img src="{% static 'images/default.png' %}" alt="" width="250" height="230">
+                {% endif %}
+                <div class="name">
+                    {{user.first_name.upper}} {{user.last_name.upper}}
+                </div>
+                <div class="job">
+                    {{data.occupation}}
+                </div>
+            </div>
+            
+            <div class="sidenav-url">
+                <div class="url">
+                    <a href="{% url 'profile' %}" class="active">PROFILE</a>
+                    <hr align="center">
+                </div>
+                <div class="url">
+                    <a href="{% url 'edit_profile' %}">EDIT</a>
+                    <hr align="center">
+                </div>
+                <div class="url">
+                    <a href="{% url 'change_pass' %}">CHANGE PWD</a>
+                    <hr align="center">
+                </div>
+                <div class="url">
+                    <a href="{% url 'user_logout' %}">SIGNOUT</a>
+                    <hr align="center">
+                </div>
+                <div class="url">
+                    <a href="{% url 'prediction_history' %}">PREDICTION HISTORY</a>
+                    <hr align="center">
+                </div>
+            </div>
+        </div>
+        <!-- End -->
+        <!--dynamic part-->
+        <div class="main-profile">
+            {% block dashboard %}
+
+            {% endblock dashboard %}
+        </div>
+    </section>
+    <!-- end of services section -->
+    </header>
+    </main>
+{% endblock content %}

@@ -1,0 +1,226 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800&display=swap");
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  .searchresult {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    min-height: 100vh;
+    background: #232427;
+  }
+  
+  .searchresult .container-1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 40px 0;
+    height: fit-content;
+  }
+  
+  .searchresult .container-1 .card-1 {
+    position: relative;
+    height: fit-content;
+    min-width: 340px;
+    height: 540px;
+    box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.2),
+      inset -5px -5px 15px rgba(255, 255, 255, 0.1),
+      5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    margin: 30px;
+    transition: 0.5s;
+  }
+  
+  .searchresult .container-1 .card-1:nth-child(1) .box-1 .content-1 a {
+    background: #2196f3;
+  }
+  
+  .searchresult .container-1 .card-1:nth-child(2) .box-1 .content-1 a {
+    background: #e91e63;
+  }
+  
+  .searchresult .container-1 .card-1:nth-child(3) .box-1 .content-1 a {
+    background: #23c186;
+  }
+  
+  .searchresult .container-1 .card-1 .box-1 {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: white;
+    right: 20px;
+    bottom: 20px;
+    background: #2a2b2f;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: 0.5s;
+  }
+  
+  .searchresult .container-1 .card-1 .box-1:hover {
+    transform: translateY(-50px);
+  }
+  
+  .searchresult .container-1 .card-1 .box-1:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.03);
+  }
+  
+  .searchresult .container-1 .card-1 .box-1 .content-1 {
+    padding: 20px;
+    text-align: center;
+    height: fit-content;
+    width: fit-content;
+  }
+  
+  .searchresult .container-1 .card-1 .box-1 .content-1 h2 {
+    position: absolute;
+    top: -10px;
+    right: 30px;
+    font-size: 8rem;
+    color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .searchresult .container-1 .card-1 .box-1 .content-1 h3 {
+    font-size: 1.8rem;
+    color: #fff;
+    z-index: 1;
+    transition: 0.5s;
+    margin-bottom: 15px;
+  }
+  
+  .searchresult .container-1 .card-1 .box-1 .content-1 p {
+    font-size: 1rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.9);
+    z-index: 1;
+    transition: 0.5s;
+  }
+  
+  .searchresult .container-1 .card-1 .box-1 .content-1 a {
+    
+    
+    padding: 8px 20px;
+    background: red;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    margin-top: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transition: 0.5s;
+  }
+  .searchresult .container-1 .card-1 .box-1 .content-1 a:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+    background: #fff;
+    color: #000;
+  }
+  
+    th{
+        background: cornsilk;
+    }
+    table,
+    th,
+    td {
+      border: 4px solid rgb(238, 241, 255);
+      font-weight: 700;
+    }
+    table td {
+      color: rgb(105, 251, 246);
+    }
+    table th {
+      color: rgb(234, 2, 14);
+      background: springgreen;
+    }
+    .sear{
+      width: -webkit-fill-available;
+      background: blue;
+      text-align: center;
+      height: 50px;
+      box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+
+    }
+    .sear h2{
+      font-size: 39px;
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    }
+    
+   
+    .mybuttonoverlap{
+      position: absolute;
+        z-index: 2;
+        width:max-content;
+        font-size:34px;
+        height:50px;
+        top: 44px;
+        display: none;
+        left: 59px;	
+    }
+    .card-1:hover .mybuttonoverlap{ 
+      display:block;
+    }
+</style>
+<section id = "searchresult" class = "searchresult py">
+<div class="container-1">
+  {% if abcd %}
+  <div class="sear"><h2>CLICK A DOCTOR'S CARD TO BOOK AN APPOINTMENT</h2></div><br>
+  <hr>
+    {% for doc in doctors %}
+    <div class="card-1">
+      <div class="box-1">
+        <div class="content-1">
+            
+          <img src="/media/{{doc.img}}" alt="">
+          <a type="button" href="book/{{ doc.id }}" class="mybuttonoverlap btn btn-info">BOOK SLOT</a>
+          <table style="width: 100%">
+            
+            <tr>
+              <td>NAME</td>
+              <td>{{doc.name}}</td>
+            </tr>
+            <tr>
+              <td>CITY</td>
+              <td>{{doc.city}}</td>
+            </tr>
+            <tr>
+              <td>STATE</td>
+              <td>{{doc.state}}</td>
+            </tr>
+            <tr>
+              <td>PHONE</td>
+              <td>{{doc.phone}}</td>
+            </tr>
+            <tr>
+              <td>ADDRESS</td>
+              <td>{{doc.address}}</td>
+            </tr>
+            
+           
+        </table>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <h1>SORRY {{user.get_full_name}} !! NO RESULTS FOUND</h1>
+    {% endif %}
+    
+</section>
+  {% endblock content %}

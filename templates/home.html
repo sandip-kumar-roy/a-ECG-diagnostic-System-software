@@ -1,0 +1,377 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+<style>
+    .msg{
+        background: rgb(43, 255, 0);
+        color: white;
+        width: fit-content;
+        font-size: 40px;
+        display: inline-block;
+        margin-top: 60px;
+    }
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+      }
+      
+      /* Modal Content/Box */
+      .modal-content {
+        background-color: #340bc6;
+        margin: 15% auto; /* 15% from the top and centered */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 50%; /* Could be more or less, depending on screen size */
+      }
+      
+      /* The Close Button */
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+      
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      #myBtn{
+        padding: 0.9rem 4rem;
+        border-radius: 3rem;    
+        display: inline-block;
+        background-color: var(--light-color);
+        font-weight: 800;
+        font-size: 17px;
+        -webkit-box-shadow: 7px 5px 7px 2px rgb(7 44 255);
+        box-shadow: rgb(0 0 0 / 56%) 0px 22px 70px 4px;
+        -webkit-transition: var(--transition);
+        -o-transition: var(--transition);
+        transition: var(--transition);
+      }
+      #myBtn:hover{
+        transform: scale(1.2); 
+        background:red ;
+        color: white;
+      }
+      .pred-hist{
+        margin-top:20px;
+      }
+</style>
+        <div class = "header-inner text-white text-center">
+            {% if messages %}
+                    {% for message in messages %}
+                        <div class="msg">{{message}} ✔️</div>
+                    {% endfor %}
+                {% endif %}
+            <div class = "container grid">
+                
+                <div class = "header-inner-left">
+                    <h2><img class="first-aid" src = "{% static 'images/first-aid.png' %}">  Welcome To <img class="first-aid" src = "{% static 'images/first-aid.png' %}"></h2><br> <h3 class="hdp">Heart Disease Prediction Portal </h3>
+                    <p class = "lead">Please Read The Instruction below Carefully Before Proceeding</p>
+                    <p class = "text text-md">You can Predict whether Your Heart is functioning properly or need to be checked by a doctor as we are providing u the facility to use our prediction system to predict whether you are safe or unsafe</p>
+                    <div class = "btn-group">
+                        <button id="myBtn" data-target="#exampleModalScrollable">
+                            INSTRUCTION
+                        </button>
+                        {% if user.is_authenticated %}
+                        <a href = "{% url 'prdictformpage' %}" class = "btn btn-light-blue">PREDICT</a>
+                        
+                        {% else %}
+                        <button ID="myBtn" onclick="myFunction()" data-target="#exampleModalScrollable">
+                          PREDICT
+                      </button>
+                      
+                        {% endif %}
+                    </div>
+                </div>
+                <div class = "header-inner-right">
+                    <img src = "{% static 'images/animated.png' %}">
+                </div>
+            </div>
+        </div>
+    </header>
+    <style>
+      .popimg{
+        width: 100%;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        height: min-content;
+      }
+      .prec{
+        font-size: 25px;
+        font-weight: 500;
+        color: white;
+      }
+      .insthead{
+        margin-bottom: 20px;
+        background: chartreuse;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+      }
+      .modal-content h2{
+        font-size: 25px;
+        color: rgb(156, 255, 252);
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        font-weight: 800;
+      }
+      .c{
+        margin-top: 60px;
+        margin-bottom: 75px;
+        margin-left: 20px;
+        background:chartreuse;
+        color: #5a5a5a;
+        font-size: bold;
+      }
+      .c li{
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+        font-size: 20px;
+  list-style-type: lower-alpha;
+
+        
+      }
+      .cookie-overlay {
+        position: fixed;
+        bottom: 1rem;
+        left: 1rem;
+        background: #fff;
+        z-index: 2051;
+        line-height: 20px;
+        font-size: 14px;
+        border-radius: 6px;
+      
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+      
+        > div:first-child {
+          width: 458px;
+        }
+        a {
+          text-decoration: underline;
+        }
+      
+        .close-cookies {
+          cursor: pointer;
+        }
+      
+        @include media-breakpoint-down(md) {
+          bottom: 0;
+          left: 0;
+          right: 0;
+          border-radius: 0;
+      
+          > div:first-child {
+            width: auto;
+          }
+        }
+      }
+    </style>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <h1 class="insthead">INSTRUCTIONS</h1>
+    <span class="close">&times;</span>
+    <p class="prec">
+        Getting regular exercise is good for you for many reasons, but one of
+        the best is that it keeps your heart in good shape. It lowers
+        cholesterol, improves circulation, can help reduce your weight and
+        blood pressure. As an added bonus, exercise releases endorphins into
+        your bloodstream that relax and calm you down and also relieves pain.
+      </p>
+      <h2>⓶ - <u>REGISTER/SIGN IN YOURSELF</u></h2>
+      <img class="popimg" src="{% static 'images/reg.png' %}" alt="" />
+      <p class="prec">
+        <ol class="c">
+            <li>First Go to the Register Page and Fill the required registration details</li>
+            <li>Please enter a valid email id and unique username</li>
+            <li>We will send you the confirmation of successful registration through email</li>
+            <li>You will be redirected to the home page as a authenticated user</li>
+          </ol>
+      </p>
+      <h2>⓶ - <u>AFTER SUCCESSFUL AUTHENTICATION</u> </h2>
+      <img class="popimg" src="{% static 'images/email.jpeg' %}" alt="" />
+      <p class="prec">
+        <ol class="c">
+            <li>You will be redirected to homepage</li>
+            <li>We will send you the confirmation of successful registration through email</li>
+            <li>A Success message will be shown and an email will be delivered to your email id</li>
+       
+          </ol>
+      </p>
+      <h2>⓷ - <u>CLICK ON THE PREDICT BUTTON</u></h2>
+      <img class="popimg" src="{% static 'images/predictfromhere.png' %}" alt="" />
+      <p class="prec">
+        <ol class="c">
+          <li>Read The instructions if u feel lost any where </li>
+          <li>Click on the predict button in order to use our prediction tool</li>
+        </ol>
+      </p>
+      <h2>⓸ - <u>HELP BUTTONS ON PREDICTION PAGE</u></h2>
+      <img class="popimg" src="{% static 'images/take help.png' %}" alt="" />
+      <img class="popimg" src="{% static 'images/prediction.png' %}" alt="" />
+      <p class="prec">
+        <ol class="c">
+          <li>Click on the help icon to get a help popup box for detailed info </li>
+          <li>inside the instruction form all details about the field values will be given with definitions</li>
+          <li>Click on the predict button in order to use our prediction tool</li>
+        </ol>
+      </p>
+      <h2>⓹ - <u>RESULT PAGE</u></h2>
+      <img class="popimg" src="{% static 'images/resultpage.png' %}" alt="" />
+      <p class="prec">
+        <ol class="c">
+          <li>After clicking on predict button you will be redirected to the Result page  </li>
+          <li>Here first u need to preview your entered value in order do some ammendments or whteher you hv entered everything crrectly</li>
+          <li>Click on the PREVIEW YOUR DATA button</li>
+        </ol>
+      </p>
+      <h2>⓺ - <u>SEARCH NEAREST DOCTORS</u></h2>
+      <img class="popimg" src="{% static 'images/preview your data.png' %}" alt="" />
+      <p class="prec">
+        <ol class="c">
+          <li>You can edit or save the existing data you have entered  </li>
+          <li>Now after saving it click on the CHECK button to view your results</li>
+          
+        </ol>
+      </p>
+      <h2>⓻ - <u>RESULT IMAGES</u></h2>
+      <img class="popimg" src="{% static 'images/notsafe.png' %}" alt="" />
+      <p class="prec">
+        <ol class="c">
+        <li>Based on your inputs we have analysed your data through our trained machine learning model and evaluated the results  </li>
+        <li>similarly if u are safe then a safe sign message box will appear</li>
+      </ol>
+      </p>
+
+      <h2>⓻ - <u>LOCATE NEAREST DOCTORS</u></h2>
+      <img class="popimg" src="{% static 'images/remote.png' %}" alt="" />
+      <p class="prec">
+        <ol class="c">
+        <li>Based on your inputs we have analysed your data through our trained machine learning model and evaluated the results  </li>
+        <li>similarly if u are safe then a safe sign message box will appear</li>
+      </ol>
+      </p>
+      
+  </div>
+  <div id="cookieNotice" class="light display-right" style="display: none;">
+    <div id="closeIcon" style="display: none;">
+    </div>
+    <div class="title-wrap">
+        <h4>Cookie Consent</h4>
+    </div>
+    <div class="content-wrap">
+        <div class="msg-wrap">
+            <p>This website uses cookies or similar technologies, to enhance your browsing experience and provide personalized recommendations. By continuing to use our website, you agree to our  <a style="color:#115cfa;" href="/privacy-policy">Privacy Policy</a></p>
+            <div class="btn-wrap">
+                <button class="btn-primary" onclick="acceptCookieConsent();">Accept</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+  // Create cookie
+function setCookie(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  let expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+// Delete cookie
+function deleteCookie(cname) {
+  const d = new Date();
+  d.setTime(d.getTime() + (24*60*60*1000));
+  let expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=;" + expires + ";path=/";
+}
+
+// Read cookie
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+      }
+  }
+  return "";
+}
+
+// Set cookie consent
+function acceptCookieConsent(){
+  deleteCookie('user_cookie_consent');
+  setCookie('user_cookie_consent', 1, 30);
+  document.getElementById("cookieNotice").style.display = "none";
+}
+let cookie_consent = getCookie("user_cookie_consent");
+if(cookie_consent != ""){
+    document.getElementById("cookieNotice").style.display = "none";
+}else{
+    document.getElementById("cookieNotice").style.display = "block";
+}
+</script>
+    <!-- end of header -->
+     <script>
+        var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+<script>
+  function myFunction() {
+    alert("PLEASE REGISTER/SIGN IN TO USER ACCOUNT IN ORDER TO USE OUR PREDICTION TOOL");
+  }
+  </script>
+
+
+    {% if status %}
+        <script>
+            alert("{{status}}");
+            windows.location="/"
+        </script>
+    {% endif %}
+    <!--popup effect on home page-->
+    
+    {% endblock content %}
