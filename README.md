@@ -17,14 +17,14 @@ Manual Analysis of ECG signals is laborious and prone to error , even for specia
 ![image](https://user-images.githubusercontent.com/101457128/211147640-1b589ee7-7db7-46f6-b667-9a9b600b2ea2.png)
 
       **Security Features Of while registering
-      ![image](https://user-images.githubusercontent.com/101457128/211147822-90c2c5d3-8052-4ac6-a3fd-63c15da671a8.png)
+![image](https://user-images.githubusercontent.com/101457128/211147822-90c2c5d3-8052-4ac6-a3fd-63c15da671a8.png)
 
       **Button Gets Disabled
-      ![image](https://user-images.githubusercontent.com/101457128/211147861-57eadf2e-441e-451a-a0fe-14447a7db8cd.png)
+![image](https://user-images.githubusercontent.com/101457128/211147861-57eadf2e-441e-451a-a0fe-14447a7db8cd.png)
       
-      ![image](https://user-images.githubusercontent.com/101457128/211147898-a1f1974e-ef79-45dc-9bfb-38fb6dc98f7c.png)
+![image](https://user-images.githubusercontent.com/101457128/211147898-a1f1974e-ef79-45dc-9bfb-38fb6dc98f7c.png)
 
-      ![image](https://user-images.githubusercontent.com/101457128/211147924-f4c3dd8e-1066-4a88-9b2a-b1712eb5e9a7.png)
+![image](https://user-images.githubusercontent.com/101457128/211147924-f4c3dd8e-1066-4a88-9b2a-b1712eb5e9a7.png)
       
       ![image](https://user-images.githubusercontent.com/101457128/211147956-95bd80bb-5423-4397-942a-83fb0e96b1c6.png)
 
