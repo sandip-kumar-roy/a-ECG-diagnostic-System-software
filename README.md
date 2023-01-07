@@ -6,17 +6,39 @@ Manual Analysis of ECG signals is laborious and prone to error , even for specia
          python -m venv virtual_env
         
          source virtual_env/bin/activate
-    1) Then create a new directory and clone this 
+    2) Then create a new directory and clone this 
         project files their
 
         mkdir directory_name
 
         cd directory_name
 
-        git clone 
+        git clone https://github.com/sandip-kumar-roy/a-ECG-diagnostic-System-software.git
         
+        Cloning will start and all files will be
+        ready inside your newly created directory
+
       
+     3) Install all the required packages in order to go
+        Smoothly
+  
+          pip install -r requirements.txt
+
+
+     4) Then finally migrate the data's
    
+         python manage.py makemigrations
+   
+         python manage.py migrate
+
+
+      5) After successful migration type the following
+       Command
+ 
+        python manage.py runserver
+
+And you are good to go..
+          
 # HOME PAGE
    front page of our website 
 ![image](https://user-images.githubusercontent.com/101457128/211147145-0c9ea027-bad2-484f-9af0-59d28ad3bb53.png)
