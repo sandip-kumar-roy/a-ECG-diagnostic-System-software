@@ -1,6 +1,22 @@
 # a-ECG-diagnostic-System-software (Heart Disease Prediction System)
 Manual Analysis of ECG signals is laborious and prone to error , even for specialist with manyy hours of xperience.
 
+# STEPS TO RUN THIS PROJECT ON YOUR LOCAL MACHINE
+    1) create and activate virtual environment 
+         python -m venv virtual_env
+        
+         source virtual_env/bin/activate
+    1) Then create a new directory and clone this 
+        project files their
+
+        mkdir directory_name
+
+        cd directory_name
+
+        git clone 
+        
+      
+   
 # HOME PAGE
    front page of our website 
 ![image](https://user-images.githubusercontent.com/101457128/211147145-0c9ea027-bad2-484f-9af0-59d28ad3bb53.png)
