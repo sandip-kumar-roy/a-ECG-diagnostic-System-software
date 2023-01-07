@@ -35,20 +35,25 @@ Manual Analysis of ECG signals is laborious and prone to error , even for specia
 ![image](https://user-images.githubusercontent.com/101457128/211148105-510fa397-2091-43af-9ce9-833fa10b61fd.png)
 
       **Edit profile**
-      ![image](https://user-images.githubusercontent.com/101457128/211148494-d5f7839b-4df8-47e2-a44b-74cd985a6ac2.png)
+      
+![image](https://user-images.githubusercontent.com/101457128/211148494-d5f7839b-4df8-47e2-a44b-74cd985a6ac2.png)
 
       **Change password**
-      ![image](https://user-images.githubusercontent.com/101457128/211148512-d2ebce31-7cdd-49b7-9bcd-487d91419a17.png)
+      
+![image](https://user-images.githubusercontent.com/101457128/211148512-d2ebce31-7cdd-49b7-9bcd-487d91419a17.png)
       
       **prediction history
       
-      ![image](https://user-images.githubusercontent.com/101457128/211148639-9268e273-52b5-4ace-b0f7-30240d4f3ce7.png)
+      
+![image](https://user-images.githubusercontent.com/101457128/211148639-9268e273-52b5-4ace-b0f7-30240d4f3ce7.png)
        
        **SIGNOUT
-       ![image](https://user-images.githubusercontent.com/101457128/211148677-3aab6e4f-a772-4d21-8908-54b6add2395b.png)
+       
+![image](https://user-images.githubusercontent.com/101457128/211148677-3aab6e4f-a772-4d21-8908-54b6add2395b.png)
 
         **dELETE ACCOUNT
-        ![image](https://user-images.githubusercontent.com/101457128/211148709-4af049c7-167a-48b4-bdd6-fc458cfa0bd4.png)
+        
+![image](https://user-images.githubusercontent.com/101457128/211148709-4af049c7-167a-48b4-bdd6-fc458cfa0bd4.png)
 
 # BOOKING PART
 
