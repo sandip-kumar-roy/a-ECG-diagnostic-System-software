@@ -63,6 +63,39 @@ And you are good to go..
 
 ![image](https://user-images.githubusercontent.com/101457128/211147448-41b42d46-2cc3-42f9-878e-41dfe30a955d.png)
 
+# RESET PASSWORD
+
+Suppose a user forgets his/her password and now wants to 
+Login
+Not to worry we have got your back covered
+
+     1)we have provided the  Reset password facility which
+       enables user to reset their password
+
+     2)They will be asked to enter their username
+       Then in the backend our system will search for that 
+       particular username
+
+     3) and if they finds that user then an OTP will be send to 
+        their EMAIL ID and user will be asked to enter the 
+        OTP which he/she recieved in his/her mail
+
+![IMG_20230110_214934](https://user-images.githubusercontent.com/101457128/211605331-f185a578-f1f9-4fa2-b425-22ab52eedb9a.jpg)
+
+     4)But if the user is not present then you will get a red notice
+      Displaying that user doesn't exist 
+
+![image](https://user-images.githubusercontent.com/101457128/211149280-c16e1ea3-b1c5-4b2f-add2-26bd7c828187.png)
+
+![image](https://user-images.githubusercontent.com/101457128/211149292-ff2f073e-695b-40a4-8569-1690d1fc42b9.png)
+
+
+![image](https://user-images.githubusercontent.com/101457128/211149300-696a0104-3b16-47fe-b61f-be72076711f6.png)
+
+![image](https://user-images.githubusercontent.com/101457128/211149363-369dda45-7624-4f01-a450-5644176bd3f0.png)
+
+![image](https://user-images.githubusercontent.com/101457128/211149374-355cf289-a781-4885-8146-462b035af92a.png)
+
 # AFTER LOGIN
 
    After login user will be redirected to home page 
@@ -114,6 +147,9 @@ And you are good to go..
       
    
 ![image](https://user-images.githubusercontent.com/101457128/211147956-95bd80bb-5423-4397-942a-83fb0e96b1c6.png)
+
+# Email confirmation post registration 
+![Uploading Screenshot_2022-12-31-22-53-00-393_com.google.android.gm.jpg…]()
 
 # PROFILE PAGE
 
@@ -290,35 +326,6 @@ And you are good to go..
 ![image](https://user-images.githubusercontent.com/101457128/211149246-aae87568-dbe1-4d1c-9c72-a0ad480c2067.png)
 
 
-# RESET PASSWORD
-
-Suppose a user forgets his/her password and now wants to 
-Login
-Not to worry we have got your back covered
-
-     1)we have provided the  Reset password facility which
-       enables user to reset their password
-
-     2)They will be asked to enter their username
-       Then in the backend our system will search for that 
-       particular username
-
-     3) and if they finds that user then an OTP will be send to 
-        their EMAIL ID and user will be asked to enter the 
-        OTP which he/she recieved in his/her mail
-
-     4)But if the user is not present then you will get a red notice
-      Displaying that user doesn't exist 
-
-![image](https://user-images.githubusercontent.com/101457128/211149280-c16e1ea3-b1c5-4b2f-add2-26bd7c828187.png)
-
-![image](https://user-images.githubusercontent.com/101457128/211149292-ff2f073e-695b-40a4-8569-1690d1fc42b9.png)
-
-![image](https://user-images.githubusercontent.com/101457128/211149300-696a0104-3b16-47fe-b61f-be72076711f6.png)
-
-![image](https://user-images.githubusercontent.com/101457128/211149363-369dda45-7624-4f01-a450-5644176bd3f0.png)
-
-![image](https://user-images.githubusercontent.com/101457128/211149374-355cf289-a781-4885-8146-462b035af92a.png)
 
 
 # HERE ARE DEMO THE VIDEOS
