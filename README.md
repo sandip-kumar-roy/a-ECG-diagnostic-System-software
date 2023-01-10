@@ -80,7 +80,7 @@ Not to worry we have got your back covered
         their EMAIL ID and user will be asked to enter the 
         OTP which he/she recieved in his/her mail
 
-![IMG_20230110_214934](https://user-images.githubusercontent.com/101457128/211605331-f185a578-f1f9-4fa2-b425-22ab52eedb9a.jpg)
+
 
      4)But if the user is not present then you will get a red notice
       Displaying that user doesn't exist 
@@ -89,6 +89,7 @@ Not to worry we have got your back covered
 
 ![image](https://user-images.githubusercontent.com/101457128/211149292-ff2f073e-695b-40a4-8569-1690d1fc42b9.png)
 
+![IMG_20230110_224103](https://user-images.githubusercontent.com/101457128/211617505-8177aba5-6ece-48b5-9aa5-9c9d02949426.jpg)
 
 ![image](https://user-images.githubusercontent.com/101457128/211149300-696a0104-3b16-47fe-b61f-be72076711f6.png)
 
@@ -149,7 +150,7 @@ Not to worry we have got your back covered
 ![image](https://user-images.githubusercontent.com/101457128/211147956-95bd80bb-5423-4397-942a-83fb0e96b1c6.png)
 
 # Email confirmation post registration 
-![Uploading Screenshot_2022-12-31-22-53-00-393_com.google.android.gm.jpg…]()
+![Screenshot_2023-01-10-21-58-22-512_com google android gm](https://user-images.githubusercontent.com/101457128/211617586-ff2446ca-36a9-43dc-bcfc-848a8b7b8edf.jpg)
 
 # PROFILE PAGE
 
